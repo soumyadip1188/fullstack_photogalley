@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+    <script nomodule>window.MSInputMethodContext && document.documentMode && document.write('<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-ie11@5/css/bootstrap-ie11.min.css"><script src="https://cdn.jsdelivr.net/npm/ie11-custom-properties@4/ie11CustomProperties.min.js"><\/script>');
+    </script>
+    <title>Userpicturesearch</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='image/icon.jpg') }}">
+    <style>
+        body {
+  background: #f1f2f3;
+
+}
+
+.navbar-nav > li{
+  padding-left:15px;
+  padding-right:15px;
+}
+
+.container .img{
+  float:left;
+  /* margin: 5px 3px; */
+  margin: 20px 35px;
+  padding-top: 2px;
+  padding: 3px 10px;
+}
+.img{
+		width: 250px;
+		margin: 0 10px;
+		box-shadow: 0 0 20px 2px rgba(0, 0, 0, .1);
+		transition: 1s;
+
+	}
+
+  .img img{
+		display: block;
+		width:100%;
+		border-radius: 5px;
+	}
+
+.img:hover{
+  transform: scale(1.2);
+  z-index: 2;
+}
+.fa {
+  font-size: 30px;
+  cursor: pointer;
+  user-select: none;
+  padding-left: 50px;
+}
+
+.fa:hover {
+  color: rgb(28, 182, 202);
+} 
+
+
+
+     </style>
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container full-width">
+          <a class="navbar-brand" href="#">
+            <img
+            src="https://thumbs.dreamstime.com/b/golden-p-g-pg-luxury-letter-logo-icon-graceful-royal-style-alphabet-arts-195182439.jpg"
+            height="50px" width="70px" alt="Dispute Bills">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
+              <li class="nav-item active" >
+                <a class="navbar-brand" href="/userafterlogin">Picture</a>
+              </li>
+              
+
+              <li class="nav-item active">
+                <a class="navbar-brand" href="/userprofile">Profile</a>
+              </li>
+              <li class="nav-item active">
+                <a class="navbar-brand" href="/logout">Logout</a>
+              </li> 
+                </ul>              
+              </div>
+            </div>
+        </nav>
+      </br>
+    </br>
+        <div >
+            <div class="col-md-5 col-sm-8 mx-auto">
+              <div class="card">
+                <div class="card-body" style="background-color: #c7c8d1">
+                  <div class="mt-2 text-center">
+                    <h3 style="color: brown;">SEARCH</h3>
+                  </div>
+                  <div align = "center">
+                     <h5 style="color:red">
+                        <b> {{ errormsg }} </b>
+                     </h5>
+                  </div>
+                  <br>
+                  <form action="/allviewimage" method="post">
+      
+                    <div class="form-group">
+
+                      
+
+                        <select name="cata" id="" class="form-control">
+                        <option value="" disabled selected>Search your catagory</option>
+                        <option value="nature">Nature</option>
+                        <option value="animal">Animal</option>
+                        <option value="tech">Technology</option>
+                        <option value="food">Food</option>
+                        <option value="cars">Cars</option>
+                        </select>
+                    </div>
+      
+                    <br/>
+                   <center>
+                    <input type="submit" class="btn btn-success btn-block" value="SEARCH">
+                  </center>
+                  </form>
+      
+                </div> 
+              </div> 
+            </div> 
+          </div> 
+          
+          <br/>
+          <br/>
+          
+        
+          
+          <div class="container">
+            {% for uobj in userdata %}
+            <div class="img">
+              <img class="preview" src={{uobj ['image'] }} width="250" height="190">
+              </br>
+              <center>
+              {{uobj['catagory']}}
+              
+              <div></div>
+              {{uobj['username']}}
+              
+              </center>
+              <div ></div>
+            </br>
+                <a href="{{uobj ['image'] }}" download><button class="btn btn-success btn-block">Download</button></a>
+                <i onclick="myFunction(this)" class="fa fa-thumbs-up"></i>
+              
+                                                                                       
+            </div>
+            {% endfor %}
+          </div>
+          <script>
+            function myFunction(x) {
+              x.classList.toggle("fa-thumbs-down");
+            }
+          
+          </script>
+    </body>
+    </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+    <script nomodule>window.MSInputMethodContext && document.documentMode && document.write('<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-ie11@5/css/bootstrap-ie11.min.css"><script src="https://cdn.jsdelivr.net/npm/ie11-custom-properties@4/ie11CustomProperties.min.js"><\/script>');
+    </script>
+
+   
+    <title>SearchImage</title>
+    <style>
+        body {
+  background: #f1f2f3;
+
+}
+
+.navbar-nav > li{
+  padding-left:15px;
+  padding-right:15px;
+}
+
+.container .img{
+  float:left;
+  margin: 20px 35px;
+  padding-top: 2px;
+  padding: 3px 10px;
+}
+
+.img{
+		width: 250px;
+		margin: 0 10px;
+		box-shadow: 0 0 20px 2px rgba(0, 0, 0, .1);
+		transition: 1s;
+
+	}
+
+  .img img{
+		display: block;
+		width:100%;
+		border-radius: 5px;
+	}
+
+.img:hover{
+  transform: scale(1.2);
+  z-index: 2;
+}
+.fa {
+  font-size: 30px;
+  cursor: pointer;
+  user-select: none;
+  padding-left: 50px;
+}
+
+.fa:hover {
+  color: rgb(25, 29, 207);
+} 
+
+     </style>
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container full-width">
+          <a class="navbar-brand" href="#">Navbar</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                
+                  <li class="nav-item active" >
+                    <a class="navbar-brand" href="/userafterlogin">Home</a>
+                  </li>
+                  
+
+                  <li class="nav-item active">
+                    <a class="navbar-brand" href="/userprofile">Profile</a>
+                  </li>
+                  <li class="nav-item active">
+                    <a class="navbar-brand" href="/logout">Logout</a>
+                  </li>                  
+                </ul>              
+              </div>
+            </div>
+        </nav>
+        </br>
+        </br>
+        <div class="row">
+            <div class="col-md-6 col-sm-8 mx-auto">
+              <div class="card">
+                <div class="card-body" style="background-color: #eeefff">
+                 
+                  <div class="mt-2 text-center">
+                    <h3 style="color: brown;">SEARCH</h3>
+                  </div>
+                  
+                  <div align = "center">
+                     <h5 style="color:red">
+                        <b> {{ errormsg }} </b>
+                     </h5>
+                     <div>
+
+                     </div>
+                  </div>
+                  <br>
+                 
+                  <form action="/allviewimage" method="post">
+                    <div class="form-group">
+
+
+                       <select name="cata" id="" class="form-control">
+                        <option value="" disabled selected>Search your catagory</option>
+                        <option value="nature">Nature</option>
+                        <option value="animal">Animal</option>
+                        <option value="tech">Technology</option>
+                        <option value="food">Food</option>
+                        <option value="car">Cars</option>
+                        </select>
+                    </div>
+      
+                    <br/>
+                   
+                    <input type="submit" class="btn btn-success btn-block" value="SEARCH">
+                  </form>
+      
+                </div> 
+              </div> 
+            </div> 
+          </div> 
+          
+          <br/>
+          <br/>
+          
+        
+          
+          <div class="container">
+            {% for uobj in userdata %}
+            <div class="img">
+              <img class="preview" src={{uobj ['image'] }} width="250" height="190">
+              </br>
+              <center>
+              {{uobj['catagory']}}
+              <div></div>
+              {{uobj['username']}}
+              </center>
+              <br>
+              <div ></div>
+
+             
+                <a href="{{uobj ['image'] }}" download><button class="btn btn-success btn-block">Download</button></a>
+                <i onclick="myFunction(this)" class="fa fa-thumbs-up"></i>
+              
+                                                                                       
+            </div>
+            {% endfor %}
+          </div>
+          <script>
+            function myFunction(x) {
+              x.classList.toggle("fa-thumbs-down");
+            }         
+          </script>
+    </body>
+    </html> -->
+
+

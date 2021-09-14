@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+  <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/contact.css') }}"> -->
+
+
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+  
+
+  <script src="https://kit.fontawesome.com/7414e22221.js"></script>
+  <title>Contact Us</title>
+  <link rel="shortcut icon" href="{{ url_for('static', filename='image/icon.jpg') }}">
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Coda+Caption:800|Source+Sans+Pro&display=swap');
+
+    .navbar-nav > li{
+  padding-left:15px;
+  padding-right:10px;
+}
+
+    /* .buttone {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  height: 3rem;
+  margin: 1rem 0 2rem 0;
+  cursor: pointer;
+} */
+
+
+
+/* @import url('https://fonts.googleapis.com/css?family=Coda+Caption:800|Source+Sans+Pro&display=swap'); */
+
+:root {
+  --primary-color: #3598b6;
+  --secondary-color: #2CC4ED;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.container {
+  max-width: 60rem;
+  margin: 0 auto;
+}
+
+ul {
+  list-style: none;
+}
+
+#heading {
+  background: var(--primary-color);
+  height: 20rem;
+}
+
+.heading-wrap {
+  color: #fff;
+  padding: 3rem 0;
+  text-align: center;
+  max-width: 20rem;
+  margin: 0 auto;
+}
+
+.heading-wrap h1 {
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  font-family: 'Coda Caption', sans-serif;
+
+}
+
+.heading-wrap p {
+  position: relative;
+  font-size: 1rem;
+}
+
+.heading-wrap p::before {
+  content: '';
+  position: absolute;
+  top: -.7rem;
+  left: 50%;
+  transform: translate(-50%);
+  width: 2.7rem;
+  height: 7px;
+  background: var(--secondary-color);
+}
+
+.form-box {
+  margin: -7rem 2rem 5rem 2rem;
+  box-shadow: 0 0 5px 0 rgba(49, 61, 73, 0.7);
+  border-radius: 5px;
+}
+
+/* Form Info */
+.form-info {
+  background: var(--secondary-color);
+  color: #fff;
+  padding: 2rem;
+  text-align: center;
+}
+
+.form-info h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.form-info ul li {
+  margin-top: .5rem;
+  display: flex;
+  align-items: center;
+}
+
+.form-info ul li i {
+  background: #fff;
+  color: var(--secondary-color);
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  margin-right: .5rem;
+}
+
+/* Form input */
+.form-input {
+  padding: 0 2rem;
+  background: #fff;
+}
+
+.form-input h3 {
+  margin: 1.5rem 0 2rem 0;
+  font-size: 1.3rem;
+  color: #333;
+}
+
+.form-input form {
+  display: grid;
+  grid-gap: 1rem;;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.form-input label {
+  font-weight: bold;
+  color: #222222;
+  line-height: 1.6;
+  opacity: 0.8;
+}
+
+.form-input input {
+  height: 2.5rem;
+  text-indent: 1em;
+  border: .5px solid #149cc567;
+}
+
+.form-input form input, .form-input form textarea {
+  width: 100%;
+}
+
+.form-input form textarea {
+  height: 6rem;
+  padding: 1em;
+  border: .5px solid #149cc567;
+}
+
+.form-input form .full {
+  grid-column: 1 / 3;
+}
+
+.form-input form button {
+  width: 100%;
+  margin: 1rem 0 2rem 0;
+  height: 3rem;
+  background: var(--secondary-color);
+  border: none;
+  outline: none;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all .5s ease
+  ;
+}
+
+.form-input form button:hover {
+  background: #fff;
+  color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+}
+
+/* LARGE SCREEN */
+@media (min-width: 700px) {
+  #heading {
+    height: 25rem;
+  }
+
+  .heading-wrap h1 {
+    font-size: 2.5rem;
+  }
+
+  .form-box {
+    margin-top: -10rem;
+  }
+
+  .form-box-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    
+  }
+  
+  .form-input {
+    grid-row: 1;
+    grid-column: 1 / 3;
+  }
+
+  .form-info {
+    grid-column: 3 / 4;
+  }
+
+  .form-info ul {
+    margin-top: 4rem;
+  }
+
+  .form-info ul li {
+    margin-top: 2rem;
+  }
+
+}
+
+
+
+
+
+
+
+  </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container full-width">
+      <a class="navbar-brand" href="#">
+        <img
+        src="https://thumbs.dreamstime.com/b/golden-p-g-pg-luxury-letter-logo-icon-graceful-royal-style-alphabet-arts-195182439.jpg"
+        height="50px" width="70px" alt="Dispute Bills">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <!-- <ul class="nav navbar-nav navbar-left"> -->
+          <li class="nav-item active" >
+            <a class="navbar-brand" href="/">Home</a>
+          </li>
+          <li class="nav-item active">
+            <a class="navbar-brand" href="/about">About</a>
+          </li>
+          <li class="nav-item active">
+            <a class="navbar-brand" href="/team">Team</a>
+          </li>
+          <li class="nav-item active">
+            <a class="navbar-brand" href="#">Contact</a>
+          </li>
+          <li class="nav-item active">
+            <a class="navbar-brand" href="/login">Login</a>
+          </li>
+          
+        </ul>
+       
+      </div>
+    </div>
+  </nav>
+  
+
+
+
+
+  <section id="heading">
+    <div class="container heading-grid">
+      <div class="heading-wrap">
+        <h1>Get in Touch</h1>
+        <p>If you have any quary,please contact us</p>
+      
+        <div align = "center">
+          <h5 style="color:rgb(199, 33, 149)">
+            <b> {{ msg }} </b>
+        </h5>
+        
+        </div>
+      </div>
+    </div>
+  
+  </section>
+
+  <section id="form-box" class="animated jackInTheBox">
+    <div class="container" >
+      <div class="form-box form-box-grid">
+        <div class="form-info">
+          <h3>Contact information</h3>          
+          <ul>
+            <li><i class="fas fa-map-marker-alt"></i> 345 Street 2, Bucharest</li>
+            <li><i class="fas fa-mobile-alt"></i>+13(0243)123 123</li>
+            <li><i class="fas fa-envelope"></i>contact@yoursite.com</li>
+          </ul>
+        </div>
+  
+        <div class="form-input">
+          <h3>Send us a message</h3>
+          <!-- <form> -->
+            <form id="form-info" class="form" action="/contact" method="post">
+            <p>
+              <label for="first_name">First name</label>
+              <input type="text" name="first_name" placeholder="First Name..." required>
+            </p>
+            <p>
+              <label for="Last_name">Last name</label>
+              <input type="text" name="last_name" placeholder="Last Name..." required>
+            </p>
+            <p class="full">
+              <label for="email">Email address</label>
+              <input type="email" name="email" placeholder="Email Here..." required>
+            </p>
+            <p class="full">
+              <label for="message">Your message</label>
+              <textarea name="message" required></textarea>
+            </p>
+            <p class="half">
+              <button type="submit">Send Message</button>
+            </p>
+            <!-- <p class="half">
+              <a href="/" class="buttone">Go to home</a>
+            </p> -->
+          </form>       
+        </div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class = "map">
+      <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d223700.1490386933!2d-97.11558670486288!3d28.829485511234168!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864266db2e2dac3b%3A0xeee20d566f63267d!2sVictoria%2C%20TX%2C%20USA!5e0!3m2!1sen!2snp!4v1604921178092!5m2!1sen!2snp" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe> -->
+      <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d10363.614539424929!2d87.54316438502808!3d21.901227993100814!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1631456786819!5m2!1sen!2sin" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+    </div>
+  </section>
+
+  
+</body>
+</html>

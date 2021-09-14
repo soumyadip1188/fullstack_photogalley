@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Picture gallery</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='image/icon.jpg') }}">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+
+   
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"> 
+     <style>
+         body {
+  background-color: #eee;
+}
+.content{
+  padding-top: 5rem;
+  max-width:70rem;
+  margin:0 auto;
+}
+
+ .content h3{
+  font-size: 6.5rem;
+  color:rgba(3, 8, 3, 0.74);
+}
+.hello {
+  opacity: 1 !important;
+}
+.full {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+.full .content {
+  background-color: rgba(0,0,0,0.75) !important;
+  height: 100%;
+  width: 100%;
+  display: grid;
+}
+.full .content img {
+  left: 50%;
+  transform: translate3d(0, 0, 0);
+  animation: zoomin 1s ease;
+  max-width: 100%;
+  max-height: 100%;
+  margin: auto;
+}
+.byebye {
+  opacity: 0;
+}
+.byebye:hover {
+  transform: scale(0.2) !important;
+}
+.gallery {
+  display: grid;
+  grid-column-gap: 8px;
+  grid-row-gap: 8px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-auto-rows: 8px;
+}
+.gallery img {
+  max-width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 0 16px #333;
+  transition: all 1.5s ease;
+}
+.gallery img:hover {
+  box-shadow: 0 0 32px #333;
+}
+.gallery .content {
+  padding: 4px;
+}
+.gallery .gallery-item {
+  transition: grid-row-start 300ms linear;
+  transition: transform 300ms ease;
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+.gallery .gallery-item:hover {
+  transform: scale(1.025);
+}
+@media (max-width: 600px) {
+  .gallery {
+    grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
+  }
+}
+@media (max-width: 400px) {
+  .gallery {
+    grid-template-columns: repeat(auto-fill, minmax(50%, 1fr));
+  }
+}
+@-moz-keyframes zoomin {
+  0% {
+    max-width: 50%;
+    transform: rotate(-30deg);
+    filter: blur(4px);
+  }
+  30% {
+    filter: blur(4px);
+    transform: rotate(-80deg);
+  }
+  70% {
+    max-width: 50%;
+    transform: rotate(45deg);
+  }
+  100% {
+    max-width: 100%;
+    transform: rotate(0deg);
+  }
+}
+@-webkit-keyframes zoomin {
+  0% {
+    max-width: 50%;
+    transform: rotate(-30deg);
+    filter: blur(4px);
+  }
+  30% {
+    filter: blur(4px);
+    transform: rotate(-80deg);
+  }
+  70% {
+    max-width: 50%;
+    transform: rotate(45deg);
+  }
+  100% {
+    max-width: 100%;
+    transform: rotate(0deg);
+  }
+}
+@-o-keyframes zoomin {
+  0% {
+    max-width: 50%;
+    transform: rotate(-30deg);
+    filter: blur(4px);
+  }
+  30% {
+    filter: blur(4px);
+    transform: rotate(-80deg);
+  }
+  70% {
+    max-width: 50%;
+    transform: rotate(45deg);
+  }
+  100% {
+    max-width: 100%;
+    transform: rotate(0deg);
+  }
+}
+@keyframes zoomin {
+  0% {
+    max-width: 50%;
+    transform: rotate(-30deg);
+    filter: blur(4px);
+  }
+  30% {
+    filter: blur(4px);
+    transform: rotate(-80deg);
+  }
+  70% {
+    max-width: 50%;
+    transform: rotate(45deg);
+  }
+  100% {
+    max-width: 100%;
+    transform: rotate(0deg);
+  }
+}
+
+     </style>
+</head>
+<body>
+
+  <div class="arrow">
+    <a href="#" title="Back to Top"><span class="fas fa-angle-up"></span></a>
+ </div>
+
+<header>
+
+    <a href="#" class="logo">
+      <img
+      src="https://thumbs.dreamstime.com/b/golden-p-g-pg-luxury-letter-logo-icon-graceful-royal-style-alphabet-arts-195182439.jpg"
+      height="40px" width="60px" alt="Dispute Bills">
+    </a>
+
+    <div id="menu-bar" class="fas fa-bars"></div>
+
+    <nav class="navbar">
+        <a href="/">home</a>
+        <a href="/about">about</a>
+        <a href="/team">team</a>
+        <a href="/contact">contact</a>
+        <a href="/login">login</a>
+        <a href="/registration">signup</a>
+    </nav>
+
+</header>
+</br>
+<section class="home" id="home">
+
+    <div class="content">
+        <h3>explore what's in your mind</h3>
+        <p>Photography is a way of feeling, of touching, of loving. What you have caught on film is captured forever… It remembers little things, long after you have forgotten everything.</p>
+        <a href="/pic" class="btn">get started to explore</a>
+    </div>
+
+    <div class="swiper-container image-slider">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="{{ url_for('static', filename='image/image (1).jpg') }}" alt=""></div>
+            <div class="swiper-slide"><img src="{{ url_for('static', filename='image/image(2).jpg') }}" alt=""></div>
+            <div class="swiper-slide"><img src="{{ url_for('static', filename='image/images (3).jpg') }}" alt=""></div>
+            <div class="swiper-slide"><img src="{{ url_for('static', filename='image/images (4).jpg') }}" alt=""></div>
+            <div class="swiper-slide"><img src="{{ url_for('static', filename='image/images (5).jpg') }}" alt=""></div>
+        </div>
+    </div>
+
+</section>
+<div class="content">
+   <center><h3>our photogallary</h3></center>
+</div>
+<div class="gallery" id="gallery">
+    <div class="gallery-item">
+        <div class="content"><img src="https://source.unsplash.com/random/?camera" alt=""></div>
+    </div>
+    <div class="gallery-item">
+        <div class="content"><img src="https://source.unsplash.com/random/?tech,studied" alt=""></div>
+    </div>
+    <div class="gallery-item">
+        <div class="content"><img src="https://source.unsplash.com/random/?tech,substance" alt=""></div>
+    </div>
+    <div class="gallery-item">
+        <div class="content"><img src="https://source.unsplash.com/random/?animal" alt=""></div>
+    </div>
+    <div class="gallery-item">
+        <div class="content"><img src="https://source.unsplash.com/random/?tech,past" alt=""></div>
+    </div>
+    <div class="gallery-item">
+        <div class="content"><img src="https://source.unsplash.com/random/?food" alt=""></div>
+    </div>
+    <div class="gallery-item">
+        <div class="content"><img src="https://source.unsplash.com/random/?car" alt=""></div>
+    </div>
+    <div class="gallery-item">
+        <div class="content"><img src="https://source.unsplash.com/random/?sea" alt=""></div>
+    </div>
+    <div class="gallery-item">
+        <div class="content"><img src="https://source.unsplash.com/random/?tech,crew" alt=""></div>
+    </div>
+    <div class="gallery-item">
+        <div class="content"><img src="https://source.unsplash.com/random/?tech,event" alt=""></div>
+    </div>
+    <div class="gallery-item">
+        <div class="content"><img src="https://source.unsplash.com/random/?tech,instrument" alt=""></div>
+    </div>
+    <div class="gallery-item">
+        <div class="content"><img src="https://source.unsplash.com/random/?tech,practical" alt=""></div>
+    </div>
+    <div class="gallery-item">
+        <div class="content"><img src="https://source.unsplash.com/random/?travel" alt=""></div>
+    </div>
+    <div class="gallery-item">
+        <div class="content"><img src="https://source.unsplash.com/random/?tech,bigger" alt=""></div>
+    </div>
+    <div class="gallery-item">
+        <div class="content"><img src="https://source.unsplash.com/random/?tech,number" alt=""></div>
+    </div>
+    <div class="gallery-item">
+        <div class="content"><img src="https://source.unsplash.com/random/?india" alt=""></div>
+    </div>
+    <div class="gallery-item">
+        <div class="content"><img src="https://source.unsplash.com/random/?athletics" alt=""></div>
+    </div>
+    <div class="gallery-item">
+        <div class="content"><img src="https://source.unsplash.com/random/?tech,railroad" alt=""></div>
+    </div>
+    <div class="gallery-item">
+        <div class="content"><img src="https://source.unsplash.com/random/?cooking" alt=""></div>
+    </div>
+    <div class="gallery-item">
+        <div class="content"><img src="https://source.unsplash.com/random/?tech,too" alt=""></div>
+    </div>
+    <div class="gallery-item">
+        <div class="content"><img src="https://source.unsplash.com/random/?tech,bottle" alt=""></div>
+    </div>
+    <div class="gallery-item">
+        <div class="content"><img src="https://source.unsplash.com/random/?tech,base" alt=""></div>
+    </div>
+    <div class="gallery-item">
+        <div class="content"><img src="https://source.unsplash.com/random/?tech,cell" alt=""></div>
+    </div>
+    <div class="gallery-item">
+        <div class="content"><img src="https://source.unsplash.com/random/?tech,bag" alt=""></div>
+    </div>
+    <div class="gallery-item">
+        <div class="content"><img src="https://source.unsplash.com/random/?tech,card" alt=""></div>
+    </div>
+</div>
+<section class="footer">
+
+    <div class="share">
+        <a href="https://www.facebook.com/soumyadip.das.71271" class="fab fa-facebook-f"></a>
+        <a href="https://www.instagram.com/soumyadip.das.71271" class="fab fa-instagram"></a>
+        <a href="https://www.linkedin.com/in/soumyadip-das-b988711a8" class="fab fa-linkedin"></a>
+    </div>
+
+    <h1 class="credit"> created by <span> @CSSOUMYA and team </span> | all rights reserved! </h1>
+
+</section>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<script>
+
+var swiper = new Swiper(".image-slider", {
+    effect: "coverflow",
+    grabCursor: true,
+    centeredSlides: true,
+    slidesPerView: "auto",
+    coverflowEffect: {
+        rotate: 0,
+        stretch: 0,
+        depth: 100,
+        modifier: 2,
+        slideShadows: true,
+    },
+    loop:true,
+    autoplay: {
+          delay: 2000,
+          disableOnInteraction: false,
+    },
+});    
+
+let menu = document.querySelector('#menu-bar');
+let navbar = document.querySelector('.navbar');
+
+menu.addEventListener('click', () =>{
+    menu.classList.toggle('fa-times');
+    navbar.classList.toggle('nav-toggle');
+});
+
+window.onscroll = () =>{
+    menu.classList.remove('fa-times');
+    navbar.classList.remove('nav-toggle');
+}
+
+</script>
+
+<script>
+    var gallery = document.querySelector('#gallery');
+var getVal = function (elem, style) { return parseInt(window.getComputedStyle(elem).getPropertyValue(style)); };
+var getHeight = function (item) { return item.querySelector('.content').getBoundingClientRect().height; };
+var resizeAll = function () {
+    var altura = getVal(gallery, 'grid-auto-rows');
+    var gap = getVal(gallery, 'grid-row-gap');
+    gallery.querySelectorAll('.gallery-item').forEach(function (item) {
+        var el = item;
+        el.style.gridRowEnd = "span " + Math.ceil((getHeight(item) + gap) / (altura + gap));
+    });
+};
+gallery.querySelectorAll('img').forEach(function (item) {
+    item.classList.add('byebye');
+    if (item.complete) {
+        console.log(item.src);
+    }
+    else {
+        item.addEventListener('load', function () {
+            var altura = getVal(gallery, 'grid-auto-rows');
+            var gap = getVal(gallery, 'grid-row-gap');
+            var gitem = item.parentElement.parentElement;
+            gitem.style.gridRowEnd = "span " + Math.ceil((getHeight(gitem) + gap) / (altura + gap));
+            item.classList.remove('byebye');
+        });
+    }
+});
+window.addEventListener('resize', resizeAll);
+gallery.querySelectorAll('.gallery-item').forEach(function (item) {
+    item.addEventListener('click', function () {        
+        item.classList.toggle('full');        
+    });
+});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,440 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Userafterlogin</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+nav{
+  position: fixed;
+  z-index: 99;
+  width: 100%;
+  
+  background: #242526;
+}
+nav .wrapper{
+  position: relative;
+  max-width: 1300px;
+  padding: 0px 30px;
+  height: 70px;
+  line-height: 70px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.wrapper .logo a{
+  color: #f2f2f2;
+  font-size: 30px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.wrapper .nav-links{
+  display: inline-flex;
+}
+.nav-links li{
+  list-style: none;
+}
+.nav-links li a{
+  color: #f2f2f2;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 9px 15px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+.nav-links li a:hover{
+  background: #3A3B3C;
+}
+.nav-links .mobile-item{
+  display: none;
+}
+.nav-links .drop-menu{
+  position: absolute;
+  background: #242526;
+  width: 180px;
+  line-height: 45px;
+  top: 85px;
+  opacity: 0;
+  visibility: hidden;
+  box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+}
+.nav-links li:hover .drop-menu,
+.nav-links li:hover .mega-box{
+  transition: all 0.3s ease;
+  top: 70px;
+  opacity: 1;
+  visibility: visible;
+}
+.drop-menu li a{
+  width: 100%;
+  display: block;
+  padding: 0 0 0 15px;
+  font-weight: 400;
+  border-radius: 0px;
+}
+.mega-box{
+  position: absolute;
+  left: 0;
+  width: 100%;
+  padding: 0 30px;
+  top: 85px;
+  opacity: 0;
+  visibility: hidden;
+}
+.mega-box .content{
+  background: #242526;
+  padding: 25px 20px;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+}
+.mega-box .content .row{
+  width: calc(25% - 30px);
+  line-height: 45px;
+}
+.content .row img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.content .row header{
+  color: #f2f2f2;
+  font-size: 20px;
+  font-weight: 500;
+}
+.content .row .mega-links{
+  margin-left: -40px;
+  border-left: 1px solid rgba(255,255,255,0.09);
+}
+.row .mega-links li{
+  padding: 0 20px;
+}
+.row .mega-links li a{
+  padding: 0px;
+  padding: 0 20px;
+  color: #d9d9d9;
+  font-size: 17px;
+  display: block;
+}
+.row .mega-links li a:hover{
+  color: #f2f2f2;
+}
+.wrapper .btn{
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  display: none;
+}
+.wrapper .btn.close-btn{
+  position: absolute;
+  right: 30px;
+  top: 10px;
+}
+
+@media screen and (max-width: 970px) {
+  .wrapper .btn{
+    display: block;
+  }
+  .wrapper .nav-links{
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    max-width: 350px;
+    top: 0;
+    left: -100%;
+    background: #242526;
+    display: block;
+    padding: 50px 10px;
+    line-height: 50px;
+    overflow-y: auto;
+    box-shadow: 0px 15px 15px rgba(0,0,0,0.18);
+    transition: all 0.3s ease;
+  }
+  /* custom scroll bar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #242526;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #3A3B3C;
+  }
+  #menu-btn:checked ~ .nav-links{
+    left: 0%;
+  }
+  #menu-btn:checked ~ .btn.menu-btn{
+    display: none;
+  }
+  #close-btn:checked ~ .btn.menu-btn{
+    display: block;
+  }
+  .nav-links li{
+    margin: 15px 10px;
+  }
+  .nav-links li a{
+    padding: 0 20px;
+    display: block;
+    font-size: 20px;
+  }
+  .nav-links .drop-menu{
+    position: static;
+    opacity: 1;
+    top: 65px;
+    visibility: visible;
+    padding-left: 20px;
+    width: 100%;
+    max-height: 0px;
+    overflow: hidden;
+    box-shadow: none;
+    transition: all 0.3s ease;
+  }
+  #showDrop:checked ~ .drop-menu,
+  #showMega:checked ~ .mega-box{
+    max-height: 100%;
+  }
+  .nav-links .desktop-item{
+    display: none;
+  }
+  .nav-links .mobile-item{
+    display: block;
+    color: #f2f2f2;
+    font-size: 20px;
+    font-weight: 500;
+    padding-left: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+  }
+  .nav-links .mobile-item:hover{
+    background: #3A3B3C;
+  }
+  .drop-menu li{
+    margin: 0;
+  }
+  .drop-menu li a{
+    border-radius: 5px;
+    font-size: 18px;
+  }
+  .mega-box{
+    position: static;
+    top: 65px;
+    opacity: 1;
+    visibility: visible;
+    padding: 0 20px;
+    max-height: 0px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  .mega-box .content{
+    box-shadow: none;
+    flex-direction: column;
+    padding: 20px 20px 0 20px;
+  }
+  .mega-box .content .row{
+    width: 100%;
+    margin-bottom: 15px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .mega-box .content .row:nth-child(1),
+  .mega-box .content .row:nth-child(2){
+    border-top: 0px;
+  }
+  .content .row .mega-links{
+    border-left: 0px;
+    padding-left: 15px;
+  }
+  .row .mega-links li{
+    margin: 0;
+  }
+  .content .row header{
+    font-size: 19px;
+  }
+}
+nav input{
+  display: none;
+}
+
+
+img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+ 
+.container{
+  background-color: white;
+  width: 90%;
+  max-width: 900px;
+  margin: 0 auto;
+  box-shadow: 0px 0px 61px 7px #5e849c40;
+  padding: 50px 20px;
+  border-radius: 20px;
+  text-align: center;
+}
+.header{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.header h1{
+  cursor: pointer;
+  font-size: 40px;
+  font-weight: 900;
+  letter-spacing: -2px;
+}
+form{
+  margin-top: 30px;
+  width: 80%;
+  max-width: 300px;
+  position: relative;
+}
+input{
+  border: none;
+  border-bottom: 2px solid rgba(128, 128, 128, 0.479);
+  font-size: 20px;
+  width: 100%;
+  outline: none;
+  color: gray;
+  background-color: transparent;
+}
+input::placeholder{
+  opacity: .5;
+  color: gray;
+  font-family: 'Montserrat';
+}
+form ion-icon{
+  position: absolute;
+  right: 0;
+  font-size: 20px;
+  opacity: .5;
+  color: gray;
+}
+.gallery{
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) ;
+  margin-top: 50px;
+  grid-gap: 20px;
+}
+.item{
+  width: 100%;
+  height: 300px;
+  position: relative;
+  overflow: hidden;
+  border-radius:8px;
+  transition: .3s ease box-shadow;
+}
+
+.item:hover{
+  box-shadow: 0px 0px 20px 3px #00000042;
+}
+.item:nth-last-child(1){
+  margin-bottom: 0;
+}
+.item h3{
+  width: 100%;
+  padding: 20px;
+  position: absolute;
+  background-color: #00000040;
+  color: aliceblue;
+  bottom: -70px;
+  font-weight: 300;
+  transition: .5s ease-in-out bottom;
+}
+.item:hover h3{
+  bottom: 0;
+}
+.load-more{
+  display: inline-block;
+  margin-top:30px;
+  padding: 20px 50px;
+  background-color: black;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: azure;
+  font-weight: 500;
+  cursor: pointer;
+}
+@media only screen and (min-width: 900px){
+ .container{
+   max-width: 1160px;
+   padding: 100px;
+ }
+ .header{
+   flex-direction: row;
+   justify-content: space-between;
+ }
+ .header h1{
+   font-size: 50px;
+ }
+ .header input{
+   font-size: 24px;
+ }
+ .header ion-icon{
+   font-size: 24px;
+ }
+ .gallery{
+   grid-gap: 30px;
+ }
+ 
+}
+
+    </style>
+</head>
+<body>
+  <nav>
+    <div class="wrapper">
+      <div class="logo"><a href="#">Logo</a></div>
+      <input type="radio" name="slider" id="menu-btn">
+      <input type="radio" name="slider" id="close-btn">
+      <ul class="nav-links">
+        <label for="close-btn" class="btn close-btn"><i class="fas fa-times"></i></label>
+        <li><a href="/userafterlogin">Home</a></li>
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li><a href="/upload">Upload</a></li>
+        
+        <li>
+            <a href="#" class="desktop-item">View</a>
+            <input type="checkbox" id="showDrop">
+            <label for="showDrop" class="mobile-item">View</label>
+            <ul class="drop-menu">
+                <li><a href="/accountinfo">Account Info</a></li>
+                <li><a href="/imageinfo">Image info</a></li>               
+              </ul>
+        <li>
+          <a href="#" class="desktop-item">{{uname}}</a>
+          <input type="checkbox" id="showDrop">
+          <label for="showDrop" class="mobile-item">{{uname}}</label>
+          <ul class="drop-menu">
+            <li><a href="/userprofile"><i class="far fa-user"></i>  Profile</a></li>
+            <li><a href="/logout"><i class="fas fa-sign-out-alt"></i>  Logout</a></li>
+            
+          </ul>
+        </li>
+      </ul>
+      <label for="menu-btn" class="btn menu-btn"><i class="fas fa-bars"></i></label>
+    </div>
+  </nav>
+  <div class="container" style="text-align: center;">
+    <h3> WELCOME {{uname}} </h3>
+	<h3>THIS IS YOUR DASHBOARD</h3>
+
+</div>
+</body>
+</html>
